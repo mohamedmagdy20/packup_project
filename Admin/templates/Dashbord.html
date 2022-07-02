@@ -1,0 +1,89 @@
+{% extends 'base.html' %} {% block content %}
+<section class="container position" id="dash-content">
+  <div class="main-content container">
+    <div class="row justify-content-end">
+      <div class="box-content col-md-6 mt-3">
+        <a href="#" class="text-decoration-none">
+          <div
+            class="box-color content shadow-sm rounded mb-2 p-4 text-white bg-gradient"
+          >
+            <div class="d-flex justify-content-between">
+              <div class="content-head">Tickets</div>
+              <div class="content-img">
+                <i class="fa fa-ticket text-white fs-4 ps-2"></i>
+              </div>
+            </div>
+            <div class="content-number">{{ticket}}</div>
+          </div>
+        </a>
+      </div>
+      <div id="patient-click" class="box-content col-md-6 mt-3">
+        <a href="#" class="text-decoration-none">
+          <div
+            class="box-color content shadow-sm rounded mb-2 p-4 text-white bg-gradient"
+          >
+            <div class="d-flex justify-content-between">
+              <div class="content-head">Patients</div>
+              <div class="content-img">
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
+            <div class="content-number">{{pat}}</div>
+          </div>
+        </a>
+      </div>
+      <div id="doctor-click" class="box-content col-md-6 mt-3">
+        <a href="#" class="text-decoration-none">
+          <div
+            class="box-color content shadow-sm rounded mb-2 p-4 text-white bg-gradient"
+          >
+            <div class="d-flex justify-content-between">
+              <div class="content-head">Doctors</div>
+              <div class="content-img">
+                <i class="fa fa-user-nurse"></i>
+              </div>
+            </div>
+            <div class="content-number">{{doc}}</div>
+          </div>
+        </a>
+      </div>
+      <div id="dep-click" class="box-content col-md-6 mt-3">
+        <a href="#" class="text-decoration-none">
+          <div
+            class="box-color content shadow-sm rounded mb-2 p-4 text-white bg-gradient"
+          >
+            <div class="d-flex justify-content-between">
+              <div class="content-head">Departmets</div>
+              <div class="content-img">
+                <i class="fa fa-folder-open"></i>
+              </div>
+            </div>
+            <div class="content-number">{{deps}}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="draws row justify-content-center">
+    <div
+      class="col-md-6"
+      id="myChart"
+      style="width: 100%; max-width: 600px; height: 500px"
+    ></div>
+  </div> -->
+  <div class="card mb-4 mt-4">
+    <div class="card-header btnsuccess text-white fs-5">{{fed.created_at}}</div>
+    <div class="card-body">
+      <p class="card-text fs-5">{{fed.FeedBack}}</p>
+    </div>
+  </div>
+  <div class="card mb-4">
+    <div class="card-header btnsuccess text-white fs-5">
+      {{lastfed.created_at}}
+    </div>
+    <div class="card-body">
+      <p class="card-text fs-5">{{lastfed.FeedBack}}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

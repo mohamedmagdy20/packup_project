@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/tablesstyle/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap4.css' %}">
+  <script src="{% static 'font-awsome/fontawsome.js' %}" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+  {% if user.is_authenticated %}
+  <section class="sidebar " style="width: 200px;">
+
+    <div class="sidebar-header text-center ">
+      <p class=" text-white fw-bold p-3">{{request.user.username}}</p>
+    </div>
+    <div class="profile">
+      <div class="image">
+        <img style="width: 100px"
+          src="{% static 'image/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck.png' %}"
+          alt="">
+      </div>
+      <ul class="d-block ">
+        <li class="btn"><i class="fa fa-house-user text-white fs-4 pe-2"></i><a class="activecolor" href="{% url 'Dashboard' %}">Dashboard</a></li>
+        <li class="btn"><i class="fa fa-user text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/patient' %}">Patients</a></li>
+        <li class="btn"><i class="fa fa-user-nurse text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/doctors' %}">Doctors</a> </li>
+        <li class="btn"><i class="fa fa-building text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/departments' %}"
+            id="dep-click">Department</a></li>
+        <li class="btn"><i class="fa fa-ticket text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/ticket' %}" id="ticket-click">Tickets</a></li>
+        <li class="btn"><i class="fa fa-comment text-white fs-4 pe-2"></i><a class="" href="{% url 'Dashboard/feedback' %}" id="admin-click">FeedBacks</a></li>
+
+        <li class="btn"><i class="fa fa-arrow-right-from-bracket"></i><a href="{% url 'logout' %}" class="text-danger">Log Out</a></li>
+      </ul>
+    </div>
+    </div>
+  </section>
+  <div class="navspan">
+    <span class="openicon" style="font-size: 25px; cursor: pointer"><i class="fa fa-sliders">
+      </i></span>
+  </div>
+  <div class="navspan1" style="display: none;">
+    <span class="openicon" style="font-size: 25px; cursor: pointer"><i class="fa fa-sliders">
+      </i></span>
+  </div>
+  <div class="main-head d-flex justify-content-end shadow-sm p-3 mb-5 bg-light rounded w-100 ">
+    <div class=" head-content"><a href=""  data-toggle="modal" data-target="#user"><i class="fa fa-user text-primary"></a></i></div>
+    <div class="head-content "><a href=""  data-toggle="modal" data-target="#money"><i class="fa fa-dollar-sign text-success"></i></a></div>
+    <div class="head-content "><a   data-toggle="modal" data-target="#alertModal"><i
+      class="fa fa-bell text-black"></i></a></div>
+    
+  </div>
+  <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message From Admin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body fs-3 text-dark">
+        Welcome To Our Dashboard &#128512;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btnsuccess text-white" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="money" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Total Pounds From Tickets</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body fs-3 text-dark">
+      {{total}} LE
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btnsuccess text-white" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">User information</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body fs-3 text-dark">
+      <div class="text-center">{{request.user.username}}</div>
+      <div class="text-center"> {{request.user.email}}</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btnsuccess text-white" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+  {% block content %} {% endblock%}
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="{% static 'js/file.js' %}"></script>
+  <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap/boostrap4.js' %}"></script>
+  {% else %}
+  <a href="{% url 'login' %}">Login</a>
+  {% endif %}
+</body>
+<script>
+  setTimeout(function () {
+    $("#success_alert").fadeOut("fast");
+  }, 1333);
+
+  let alllis = document.querySelectorAll('ul li a');
+  console.log(alllis);
+  alllis.forEach((elem) => {
+    elem.addEventListener('click', () => {
+        alllis.forEach((e) => {
+            e.classList.remove('activecolor');
+        })
+        elem.classList.add('activecolor');
+    })
+})
+</script>
+
+</html>
